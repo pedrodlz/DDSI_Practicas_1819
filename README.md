@@ -144,6 +144,61 @@
 - RD10. Identificador de la canción o álbum para eliminarlo:
         - Elección (canción o álbum)
         - Identificador
+	
+    • RD1. Datos nuevo álbum:
+        ◦ Nombre del álbum
+        ◦ Nombre del artista
+        ◦ Fecha de introducción
+
+    • RD2. Datos de álbum almacenado:
+        ◦ Identificador del álbum
+        ◦ Nombre del álbum
+        ◦ Nombre del artista
+        ◦ Fecha de introducción
+        ◦ Número de canciones
+        ◦ Duración
+
+    • RD3. Datos nueva canción:
+        ◦ Nombre de la canción
+        ◦ Nombre del artista
+        ◦ Nombre del álbum
+        ◦ Estilo de la canción
+        ◦ Duración de la canción
+        ◦ Fecha de introducción
+        ◦ Archivo de audio
+
+    • RD4. Datos de canción almacenada:
+        ◦ Identificador de la canción
+        ◦ Nombre de la canción
+        ◦ Nombre del artista
+        ◦ Nombre del álbum
+        ◦ Estilo de la canción
+        ◦ Duración de la canción
+        ◦ Fecha de introducción
+        ◦ Archivo de audio
+        ◦ Número de reproducciones
+        ◦ Valoración media
+
+    • RD5. Identificador de la canción introducida:
+        ◦ Identificador de la canción
+
+    • RD6. Identificador de la canción para ver sus estadístcas:
+        ◦ Identificador de la canción
+
+    • RD7. Estadísticas de la canción:
+        ◦ Nombre de la canción
+        ◦ Número de reproducciones
+        ◦ Valoración media
+
+    • RD8. Identificador de la canción para añadirla a canciones destacadas:
+        ◦ Identificador de la canción
+
+    • RD9. Lista de las canciones destacadas actualizada:
+        ◦ Canciones destacadas
+
+    • RD10. Identificador de la canción o álbum para eliminarlo:
+        ◦ Elección (canción o álbum)
+        ◦ Identificador
 
 El documento debe tener formato pdf e incluir:
 
