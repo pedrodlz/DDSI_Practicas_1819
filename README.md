@@ -2,9 +2,9 @@
 
 Creamos un sistema que gestione canciones desde el punto de vista de los usuarios y de los artistas
 
-Subsistemas:
+## Subsistemas:
 
-- Escuchar canciones (Pedro)
+###### Escuchar canciones (Pedro)
 	- Escuchar una canción/album/lista
 	- Buscar una canción/album/lista
 	- Crear listas de reproducción
@@ -12,26 +12,54 @@ Subsistemas:
 	- Borrar lista
 	- Valorar canciones (se hace junto a administracion de usuarios)*
 
-- Subir canciones (Juan Fran)
+###### Subir canciones (Juan Fran)
 	- Crear álbum
 	- Crear canción
 	- Ver estadísticas de canción
 	- Destacar canciones individuales
 	- Borrar canciones/albumes
 	
-- Administración de usuarios (Javi)
+###### Administración de usuarios (Javi)
 	- Crear usuarios
 	- Recuperar contraseña
 	- Modificar perfil
 	- Borrar usuarios
 	- *
 	
-- Social (Darío)
-	- Seguir amigos/artistas
+###### Social (Darío)
+	- Seguir amigos/artistas/listas
 	- Recomendar canciones a amigos
 	- Ver lo que están escuchando los amigos
 	- Ver recomendaciones entrantes.
 	- Canciones mejor valoradas por un usuario
+	
+## Requisitos de datos
+- RD1. Datos de una cancion
+	- Identificador
+	- Titulo
+	- Genero
+	- Album al que pertenece
+	- Año
+	- Duracion
+	- Artista
+	- Numero de reproducciones
+	
+- RD2. Datos de un album
+	- Identificador
+	- Titulo
+	- Canciones que lo componen
+	- Genero
+	- Año
+	- Artista
+	
+- RD3. Datos de una lista
+	- Identificador
+	- Nombre
+	- Usuario al que pertenece
+	- Canciones que la componen
+	- Fecha de creacion
+	- Seguidores
+
 
 El documento debe tener formato pdf e incluir:
 
