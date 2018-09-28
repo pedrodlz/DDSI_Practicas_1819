@@ -4,29 +4,34 @@ Creamos un sistema que gestione canciones desde el punto de vista de los usuario
 
 Subsistemas:
 
-- Escuchar canciones
-	- Escuchar una canción/album
-	- Buscar una canción/album
+- Escuchar canciones (Pedro)
+	- Escuchar una canción/album/lista
+	- Buscar una canción/album/lista
 	- Crear listas de reproducción
-	- Añadir canciones a una lista de reproducción
+	- Añadir/quitar canciones a una lista de reproducción
+	- Borrar lista
+	- Valorar canciones (se hace junto a administracion de usuarios)*
 
-- Subir canciones
+- Subir canciones (Juan Fran)
 	- Crear álbum
 	- Crear canción
 	- Ver estadísticas de canción
 	- Destacar canciones individuales
+	- Borrar canciones/albumes
 	
-- Administración de usuarios
+- Administración de usuarios (Javi)
 	- Crear usuarios
 	- Recuperar contraseña
 	- Modificar perfil
 	- Borrar usuarios
+	- *
 	
-- Social
-	- Hacer amigos
+- Social (Darío)
+	- Seguir amigos/artistas
 	- Recomendar canciones a amigos
 	- Ver lo que están escuchando los amigos
-	- Ver mensajes entrantes.
+	- Ver recomendaciones entrantes.
+	- Canciones mejor valoradas por un usuario
 
 El documento debe tener formato pdf e incluir:
 
