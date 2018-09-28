@@ -125,19 +125,22 @@
     • RD10. Identificador de la canción o álbum para eliminarlo:
         ◦ Elección (canción o álbum)
         ◦ Identificador
-El documento debe tener formato pdf e incluir:
+	
+## Instrucciones
 
-   - Portada.
-   - Índice.
-   - Descripción completa del problema de gestión de información que resolverá el sistema de información propuesto.
-   - Análisis de requisitos extraídos de la descripción completa, proporcionando:
-       - Requisitos de datos.
-       - Requisitos funcionales.
-       - Restricciones semánticas.
-       - Validación cruzada de requisitos.
+    • El documento debe tener formato pdf e incluir:
 
-El sistema de información propuesto debe garantizar lo siguiente:
+  	 - Portada.
+  	 - Índice.
+ 	  - Descripción completa del problema de gestión de información que resolverá el sistema de información propuesto.
+ 	  - Análisis de requisitos extraídos de la descripción completa, proporcionando:
+ 	      - Requisitos de datos.
+  	     - Requisitos funcionales.
+  	     - Restricciones semánticas.
+   	    - Validación cruzada de requisitos.
 
-   - Los requisitos deben poder agruparse en cuatro áreas funcionales.
-   - Cada área funcional debe tener al menos cuatro requisitos funcionales.
-   - Las funciones básicas (altas, bajas y modificaciones de datos básicos) no deben realizarse en más de un área funcional (por ejemplo, un alta de datos básicos solamente aparecerá en un área funcional y no se podrán proponer altas de datos básicos en más áreas funcionales).
+    • El sistema de información propuesto debe garantizar lo siguiente:
+
+   	- Los requisitos deben poder agruparse en cuatro áreas funcionales.
+   	- Cada área funcional debe tener al menos cuatro requisitos funcionales.
+   	- Las funciones básicas (altas, bajas y modificaciones de datos básicos) no deben realizarse en más de un área funcional (por ejemplo, un alta de datos básicos solamente aparecerá en un área funcional y no se podrán proponer altas de datos básicos en más áreas funcionales).
