@@ -63,6 +63,22 @@
         ◦ El sistema actualiza: RD2, RD4, RDE1
         ◦ Salida: ninguno
 	
+    • RF6. Escuchar una canción/album/lista
+	◦ Entrada: RD11
+	◦ El sistema consulta: RD2, RD4, RD12
+	◦ Salida: RD13
+	
+    • RF7. Buscar una canción/album/lista
+    	◦ Entrada: RD14
+	◦ El sistema consulta: RD2, RD4, RD12
+	◦ Salida: RD15
+    
+    • RF8. Crear listas de reproducción
+    
+    • RF9. Añadir/quitar canciones a una lista de reproducción
+    
+    • RF10. Borrar lista
+	
 ## Requisitos de datos
     • RD3. Datos de una lista:
         ◦ Identificador
@@ -125,6 +141,33 @@
     • RD10. Identificador de la canción o álbum para eliminarlo:
         ◦ Elección (canción o álbum)
         ◦ Identificador
+	
+    • RD11. Identificador de la canción, álbum o lista para escuchar:
+        ◦ Elección (canción, álbum o lista)
+        ◦ Identificador
+
+    • RD12. Datos de lista almacenada:
+        ◦ Identificador de la lista
+        ◦ Nombre de la lista
+        ◦ Canciones que contiene
+        ◦ Duración de la lista
+        ◦ Fecha de creacion
+        ◦ Usuario al que pertenece
+        ◦ Seguidores
+	
+    • RD13. Reproduccion de una lista:
+    	◦ Audio de las canciones de la lista
+	
+    • RD14. Nombre para la busqueda de una cancion, album o lista:
+	◦ Nombre
+	
+    • RD15. Lista con los posibles identificadores según el resultado de la busqueda
+    	◦ Identificador
+	◦ Tipo: cancion, album, lista
+	◦ Nombre
+	◦ Usuario o artista
+	◦ Fecha de publicacion o de creacion
+	◦ Duracion
 	
 ## Instrucciones
 
