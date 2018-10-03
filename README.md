@@ -74,19 +74,22 @@
 	◦ Salida: RD15
     
     • RF8. Crear listas de reproducción: un usuario puede crear una lista donde añade canciones y las tiene todas en un mismo lugar.
+    	◦ Entrada: RD16
+	◦ El sistema actualiza: RD12
+    	◦ Salida: RD17
     
     • RF9. Añadir/quitar canciones a una lista de reproducción: un usaurio puede añadir o eliminar las canciones de su lista a traves del identificador.
+    	◦ Entrada: RD17
+	◦ El sistema consulta: RD12
+	◦ El sistema actualiza: RD12
     
     • RF10. Borrar lista: un usuario puede eliminar su lista.
+        ◦ Entrada: RD17
+	◦ El sistema consulta: RD12
+	◦ El sistema actualiza: RD12
 	
 ## Requisitos de datos
-    • RD3. Datos de una lista:
-        ◦ Identificador
-        ◦ Nombre
-        ◦ Usuario al que pertenece
-        ◦ Canciones que la componen
-        ◦ Fecha de creación
-        ◦ Seguidores
+
     • RD1. Datos nuevo álbum:
         ◦ Nombre del álbum
         ◦ Nombre del artista
@@ -168,6 +171,14 @@
 	◦ Usuario o artista
 	◦ Fecha de publicacion o de creacion
 	◦ Duracion
+	
+    • RD16. Datos para crear una lista nueva.
+	◦ Nombre
+    	◦ Usuario
+    	◦ Fecha de creacion
+	
+    • RD17. Identificador de la nueva lista creada.
+    	◦ Identificador de la lista
 	
 ## Instrucciones
 
