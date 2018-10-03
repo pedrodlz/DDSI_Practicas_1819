@@ -1,0 +1,147 @@
+\documentclass[12pt,a4paper]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage[spanish]{babel}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tkz-fct}
+\usetikzlibrary{babel}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{forest}
+\usepackage{hyperref}
+
+%Uso de la fuente Source Sans Pro
+
+\usepackage[default]{sourcesanspro}
+%\usepackage[T1]{fontenc}
+
+%Controlar la partición de palabras.
+\pretolerance=5000
+\tolerance=6000
+
+%Simbolo de euro
+\usepackage{eurosym} % para el euro
+
+
+%Definición de monospace para codigo inline y paquete listings para código fuente.
+\def\code#1{\texttt{#1}}
+\usepackage{listingsutf8}
+\lstset{
+    %extendedchars=false,
+    %inputencoding=utf8
+}
+\usepackage{color}
+\definecolor{grisclarito}{gray}{0.95}
+
+\lstdefinestyle{customc}{
+  %belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=single,
+  %xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  %basicstyle=\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  backgroundcolor=\color{grisclarito}
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue
+}
+
+\setlength{\parindent}{0pt}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+
+\renewcommand*\contentsname{Índice}
+\newcommand{\mylabel}[2]{#2\def\@currentlabel{#2}\label{#1}}
+
+\begin{document}
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.6\textwidth]{imagenes/ugr.png}\par\vspace{1cm}
+  {\scshape\large Diseño y Desarrollo de Sistemas de Información \par} \vspace{1cm}
+  {\huge\bfseries Diseño de un sistema de información para la gestión y reproducción de música. \par}
+  \vspace{0.4cm}
+  {\large\itshape P1.Descripción del sistema y especificación de requisitos\\}
+  \vspace{0.6cm}
+  {\large\itshape  Darío Abad Tarifa \\ Juan Francisco Díaz Moreno \\ Pedro Domínguez López \\ Javier Sáez de la Coba \par} \vspace{1.00cm}
+  Curso 2018-2019 \\
+  \vfill
+
+  % Bottom of the page
+  {\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\setlength{\parskip}{10pt}
+
+\section{Descripción del problema a resolver.}
+
+Una empresa de streaming de audio quiere rehacer su plataforma de gestión de música (todo el servicio excepto el propio streaming de música). Para ello requiere que puedan haber cuentas de oyentes y de artistas.
+
+El sistema ofrece diferentes opciones de carácter social para facilitar la relación entre amigos y los artistas con sus oyentes. Un usuario puede seguir a otro usuario (sea artista o no) para estar al corriente de lo que escucha proporcionando el nombre del usuario al que quiere seguir. Un usuario podrá recomendar una canción a otro usuario proporcionando el nombre de este y el identificador de la canción que quiere recomendar. Un usuario podrá solicitar un resumen sobre las canciones que escucha su lista de amigos. 
+Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, los usuarios oyentes pueden valorar las canciones que escuchan. Por último podrán visualizar las canciones mejor valoradas por un usuario proporcionando su nombre de usuario.
+
+\section{Análisis de requisitos.}
+
+\subsection{Requisitos de datos}
+
+\begin{enumerate}[label=\textnormal{RD\arabic*.}]
+
+	\item Datos nuevo álbum: \label{rd1}
+		\begin{itemize}
+			\item Nombre del álbum
+			\item Nombre del artista
+			\item Fecha de introducción
+		\end{itemize}
+		
+	\item Datos nuevo álbum: \label{rd2}
+		\begin{itemize}
+			\item Nombre del álbum
+			\item Nombre del artista
+			\item Fecha de introducción
+		\end{itemize}
+
+
+\end{enumerate}
+
+
+\subsection{Requisitos funcionales}
+
+\begin{enumerate}[label=\textnormal{RF\arabic*.}]
+
+    \item Crear álbum: un artista registra en el sistema un nuevo álbum.\label{rf1}.
+    	\begin{itemize}
+			\item Entrada: \ref{rd1}
+		\end{itemize}
+		
+    \item text2\label{rf2}.
+    \item manually different label. \label{rf3}
+    \item text3 \label{rf4}.
+\end{enumerate}
+Referencing to \ref{rf1} \ref{rf2} \ref{rf3} \ref{rf4}
+
+\subsection{Restricciones semánticas}
+
+\subsection{Validación cruzada de requisitos}
+
+\end{document}
