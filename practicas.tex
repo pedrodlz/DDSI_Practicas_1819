@@ -104,7 +104,7 @@ de datos para posteriormente escucharla.
 Las listas funcionan como si de un directorio se tratase, el usuario las gestiona como quiere y en ellas guarda sus canciones favoritas o canciones segun un tema especifico.  
 
 El sistema ofrece ademas diferentes opciones de carácter social para facilitar la relación entre amigos y los artistas con sus oyentes. Un usuario puede seguir a otro usuario (sea artista o no) para estar al corriente de lo que escucha proporcionando el nombre del usuario al que quiere seguir. Un usuario podrá recomendar una canción a otro usuario proporcionando el nombre de este y el identificador de la canción que quiere recomendar. Un usuario podrá solicitar un resumen sobre las canciones que escucha su lista de amigos. 
-Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, los usuarios oyentes pueden valorar las canciones que escuchan. Por último podrán visualizar las canciones mejor valoradas por un usuario proporcionando su nombre de usuario.
+Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, los usuarios oyentes pueden valorar las canciones que escuchan. Por último podrán visualizar las canciones mejor valoradas por un usuario proporcionando su nombre de usuario.P
 
 \section{Análisis de requisitos.}
 
@@ -354,14 +354,14 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 
 %%%%%%%%%%%%%%%%%% AREA FUNCIONAL ESCUCHAR CANCIONES
 
-    \item Escuchar una canción/album/lista: un usuario introduce el identificador de la canción, álbum o lista que quiere escuchar.\label{rf1}.
+    \item Escuchar una canción: un usuario introduce el identificador de la canción, álbum o lista que quiere escuchar.\label{rf1}.
     	\begin{itemize}
 			\item Entrada: \ref{rd1}
 			\item Consulta: \ref{rd2}, \ref{rd3}, \ref{rd4} 
 			\item Salida: \ref{rd14}
 		\end{itemize}
 		
-	 \item Buscar una canción/album/lista: a traves del nombre de una cancion, album o lista se elige el identifcador que se considere el adecuado con los criterios de busqueda \label{rf2}.
+	 \item Buscar una canción: a traves del nombre de una cancion, album o lista se elige el identifcador que se considere el adecuado con los criterios de busqueda \label{rf2}.
     	\begin{itemize}
 			\item Entrada: \ref{rd6}
 			\item Consulta: \ref{rd2}, \ref{rd3}, \ref{rd4} 
@@ -375,7 +375,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Salida: \ref{rd5}
 		\end{itemize}
 
-	 \item Añadir/quitar canciones a una lista de reproducción: un usaurio puede añadir o eliminar las canciones de su lista a traves del identificador.\label{rf4}.
+	 \item Añadir canciones a una lista de reproducción: un usaurio puede añadir o eliminar las canciones de su lista a traves del identificador.\label{rf4}.
     	\begin{itemize}
 			\item Entrada: \ref{rd5}
 			\item Consulta: \ref{rd4}
@@ -428,7 +428,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Salida: \ref{rd19}
 		\end{itemize}
 		
-	 \item Borrar canciones/álbumes: un artista introduce en el sistema si quiere eliminar una canción o un álbum y el identificador de su elección y el sistema elimina los datos asociados al mismo.\label{rf11}.
+	 \item Borrar canciones: un artista introduce en el sistema si quiere eliminar una canción o un álbum y el identificador de su elección y el sistema elimina los datos asociados al mismo.\label{rf11}.
     	\begin{itemize}
 			\item Entrada: \ref{rd18}
 			\item Consulta: \ref{rd2} \ref{rd3} \ref{rd10}
