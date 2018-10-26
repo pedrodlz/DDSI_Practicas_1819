@@ -497,10 +497,11 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 
 
 \subsection{Validación cruzada de requisitos}
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
-	Requisito & Entrada & Manejo & Salida\\
+	RF & Entrada & Manejo & Salida\\
 \hline
 	RF1 & RD1 & RD2,RD3,RD4 & RD14\\
 \hline
@@ -544,5 +545,86 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 \end{tabular}
 \end{center}
+\caption{Requisitos funcionales}
+\end{table}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+	RD & Entrada & Manejo & Salida\\
+\hline
+	RD1 & RF1 &  & \\
+\hline
+	RD2 &  & RF1,RF2,RF7,RF8,RF11 & \\
+\hline
+	RD3 &  & RF1,RF2,RF8,RF10,RF11 & \\
+\hline
+	RD4 &  & RF1,RF2,RF3,RF4,RF5 & \\
+\hline
+	RD5 & RF4,RF5,RF6 &  & RF3 \\
+\hline
+	RD6 & RF2 &  & \\
+\hline
+	RD7 &  &  & RF2\\
+\hline
+	RD8 & RF3 &  & \\
+\hline
+	RD9 &  & RF6 & \\
+\hline
+	RD10 & RF7 & RF10,RF11 & \\
+\hline
+	RD11 & RF8 &  & \\
+\hline
+	RD12 &  & RF9 & RF8\\
+\hline
+	RD13 & RF9 &  & \\
+\hline
+	RD14 &  &  & RF1\\
+\hline
+	RD15 &  &  & RF9\\
+\hline
+	RD16 & RF10 &  & \\
+\hline
+	RD17 &  &  & \\
+\hline
+	RD18 & RF11 &  & \\
+\hline
+	RD19 & RF12 &  & RF10\\
+\hline
+	RD20 &  & RF12,RF13,RF14,RF15 & \\
+\hline
+	RD21 & RF13 &  & \\
+\hline
+	RD22 & RF14 &  & \\
+\hline
+	RD23 & RF15 &  & \\
+\hline
+	RD24 & RF16 &  & \\
+\hline
+	RD25 & RF18 & RF16 & \\
+\hline
+	RD26 &  & RF16 & \\
+\hline
+	RD27 & RF17 &  & \\
+\hline
+	RD28 &  &  & RF19\\
+\hline
+	RD29 &  & RF17 & \\
+\hline
+	RD30 &  &  & RF18 \\
+\hline
+	RD31 & RF19 &  & \\
+\hline
+	RD32 &  &  & RF20 \\
+\hline
+	RD33 & RF20 &  & \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Requisitos de datos}
+\end{table}
+
+
 
 \end{document}
