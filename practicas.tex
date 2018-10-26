@@ -343,6 +343,24 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 		\begin{itemize}
 			\item Nombre de usuario
 		\end{itemize}
+		
+	\item Valoración dada por un usuario a una canción  \label{rd34}
+		\begin{itemize}
+			\item identificador de canción
+			\item Valoración
+		\end{itemize}
+		
+	\item Datos modificar estado de canción en lista.  \label{rd35}
+		\begin{itemize}
+			\item Identificador de canción
+			\item Identificador de la lista de reproducción
+			\item Operación a realizar
+		\end{itemize}
+		
+	\item Identificador de la lista a eliminar  \label{rd36}
+		\begin{itemize}
+			\item Identificador de la lista de reproducción
+		\end{itemize}
 
 
 \end{enumerate}
@@ -361,7 +379,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Salida: \ref{rd14}
 		\end{itemize}
 		
-	 \item Buscar una canción: a traves del nombre de una cancion, album o lista se elige el identifcador que se considere el adecuado con los criterios de busqueda \label{rf2}.
+	 \item Buscar una canción: a través del nombre de una canción, álbum o lista se elige el identificador que se considere el adecuado con los criterios de búsqueda \label{rf2}.
     	\begin{itemize}
 			\item Entrada: \ref{rd6}
 			\item Consulta: \ref{rd2}, \ref{rd3}, \ref{rd4} 
@@ -375,23 +393,23 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Salida: \ref{rd5}
 		\end{itemize}
 
-	 \item Añadir canciones a una lista de reproducción: un usaurio puede añadir o eliminar las canciones de su lista a traves del identificador.\label{rf4}.
+	 \item Añadir canciones a una lista de reproducción: un usuario puede añadir o eliminar las canciones de su lista a traves del identificador.\label{rf4}.
     	\begin{itemize}
-			\item Entrada: \ref{rd5}
+			\item Entrada: \ref{rd35}
 			\item Consulta: \ref{rd4}
 			\item Actualiza: \ref{rd4}
 		\end{itemize}
 
 	 \item Borrar lista: un usuario puede eliminar su lista.\label{rf5}.
     	\begin{itemize}
-			\item Entrada: \ref{rd5}
+			\item Entrada: \ref{rd36}
 			\item Consulta: \ref{rd4}
 			\item Actualiza: \ref{rd4}
 		\end{itemize}
 		
 	 \item Valorar canciones: un usuario puede valorar una canción.\label{rf6}.
     	\begin{itemize}
-			\item Entrada: \ref{rd5}
+			\item Entrada: \ref{rd34}
 			\item Consulta: \ref{rd9}
 			\item Actualiza: \ref{rd9}
 		\end{itemize}
@@ -424,15 +442,14 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
     	\begin{itemize}
 			\item Entrada: \ref{rd16}
 			\item Consulta: \ref{rd3}
-			\item Actualiza: \ref{rd10}
-			\item Salida: \ref{rd19}
+			\item Salida: \ref{rd17}
 		\end{itemize}
 		
 	 \item Borrar canciones: un artista introduce en el sistema si quiere eliminar una canción o un álbum y el identificador de su elección y el sistema elimina los datos asociados al mismo.\label{rf11}.
     	\begin{itemize}
 			\item Entrada: \ref{rd18}
-			\item Consulta: \ref{rd2} \ref{rd3} \ref{rd10}
-			\item Actualiza: \ref{rd2} \ref{rd3} \ref{rd10}
+			\item Consulta: \ref{rd2} \ref{rd3} 
+			\item Actualiza: \ref{rd2} \ref{rd3} 
 		\end{itemize}
 		
 %%%%%%%%%%%%%%%%%%%%%%% ÁREA DE ADMINISTRACIÓN DE USUARIOS
@@ -466,7 +483,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 	 \item Seguir usuario. Se crea una relación entre dos usuarios, el seguidor estará al tanto de las acciones del usuario al que sigue. \label{rf16}
 	 	\begin{itemize}
 			\item Entrada: \ref{rd24}
-			\item Almacenado: \ref{rd25}, \ref{rd26}
+			\item Almacenado: \ref{rd26}
 		\end{itemize}
 	
 	 \item Recomendar canciones a amigos. Un usuario envía a través de un mensaje una canción a otro usuario. \label{rf17}
@@ -511,7 +528,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	RF4 & RD5 & RD4 & \\
 \hline
-	RF5 & RD5 & RD4 & \\
+	RF5 & RD36 & RD4 & \\
 \hline
 	RF6 & RD5 & RD9 & RD9\\
 \hline
@@ -521,7 +538,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	RF9 & RD13 & RD12 & RD15\\
 \hline
-	RF10 & RD16 & RD3,RD10 & RD19\\
+	RF10 & RD16 & RD3,RD10 & RD17\\
 \hline
 	RF11 & RD18 & RD2,RD3,RD10 & \\
 \hline
@@ -562,7 +579,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	RD4 &  & RF1,RF2,RF3,RF4,RF5 & \\
 \hline
-	RD5 & RF4,RF5,RF6 &  & RF3 \\
+	RD5 &  &  & RF3 \\
 \hline
 	RD6 & RF2 &  & \\
 \hline
@@ -572,7 +589,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	RD9 &  & RF6 & \\
 \hline
-	RD10 & RF7 & RF10,RF11 & \\
+	RD10 & RF7 &  & \\
 \hline
 	RD11 & RF8 &  & \\
 \hline
@@ -586,11 +603,11 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	RD16 & RF10 &  & \\
 \hline
-	RD17 &  &  & \\
+	RD17 &  &  & RF10 \\
 \hline
 	RD18 & RF11 &  & \\
 \hline
-	RD19 & RF12 &  & RF10\\
+	RD19 & RF12 &  & \\
 \hline
 	RD20 &  & RF12,RF13,RF14,RF15 & \\
 \hline
@@ -602,7 +619,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	RD24 & RF16 &  & \\
 \hline
-	RD25 & RF18 & RF16 & \\
+	RD25 & RF18 & & \\
 \hline
 	RD26 &  & RF16 & \\
 \hline
@@ -619,6 +636,12 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 	RD32 &  &  & RF20 \\
 \hline
 	RD33 & RF20 &  & \\
+\hline
+	RD34 & RF6 &  & \\
+\hline
+	RD35 & RF4 &  & \\
+\hline
+	RD36 & RF5 &  & \\
 \hline
 \end{tabular}
 \end{center}
