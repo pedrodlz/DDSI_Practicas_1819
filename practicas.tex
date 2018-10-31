@@ -361,7 +361,26 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 		\begin{itemize}
 			\item Identificador de la lista de reproducción
 		\end{itemize}
-
+		
+	\item Datos canciones que estan siendo escuchadas  \label{rd37}
+		\begin{itemize}
+			\item Identificador de la cancion
+			\item Identificador de usuario que escucha la cancion
+		\end{itemize}
+				
+	\item Datos recomendaciones almacenadas  \label{rd38}
+		\begin{itemize}
+			\item Identificador del usuario que recomienda
+			\item Identificador del usuario que recibe la recomendación
+			\item Identificador de la canción que es recomendada
+		\end{itemize}
+		
+	\item Datos canciones mejor valoradas \label{rd39}
+		\begin{itemize}
+			\item Nombre de la cancion
+			\item Nombre del artista
+			\item Valoración
+		\end{itemize}
 
 \end{enumerate}
 
@@ -495,19 +514,22 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 	 \item Ver lo que están escuchando los amigos. Se muestra al usuario una lista con las canciones que están escuchando sus amigos en ese momento. \label{rf18}
 	 	\begin{itemize}
 			\item Entrada: \ref{rd25}
+			\item Consulta: \ref{rd37}
 			\item Salida: \ref{rd30}
 		\end{itemize}
 
 	 \item Ver recomendaciones entrantes. Se muestra al usuario una lista con las recomendaciones que le han hecho sus amigos. \label{rf19}
 	 	\begin{itemize}
 			\item Entrada: \ref{rd31}
+			\item Consulta: \ref{rd38}
 			\item Salida: \ref{rd28}
 		\end{itemize}
 
 	 \item Canciones mejor valoradas por un usuario. Un usuario solicita una lista de las canciones mejor valoradas proporcionando el identificador de otro usuario. \label{rf20}
 	 	\begin{itemize}
 			\item Entrada:  \ref{rd33}
-			\item Salida: \ref{rd32}
+			\item Consulta: \ref{rd32}
+			\item Salida: \ref{rd39}
 		\end{itemize}	
    
 \end{enumerate}
@@ -528,7 +550,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	\ref{rf4} & \ref{rd5} & \ref{rd4} & \\
 \hline
-	\ref{rf35} & \ref{rd36} & \ref{rd4} & \\
+	\ref{rf5} & \ref{rd36} & \ref{rd4} & \\
 \hline
 	\ref{rf6} & \ref{rd5} & \ref{rd9} & \ref{rd9}\\
 \hline
@@ -554,11 +576,11 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	\ref{rf17} & \ref{rd27} & \ref{rd29} & \\
 \hline
-	\ref{rf18} & \ref{rd25} &  & \ref{rd30}\\
+	\ref{rf18} & \ref{rd25} & \ref{rd37} & \ref{rd30}\\
 \hline
-	\ref{rf19} & \ref{rd31} &  & \ref{rd28}\\
+	\ref{rf19} & \ref{rd31} & \ref{rd38} & \ref{rd28}\\
 \hline
-	\ref{rf20} & \ref{rd33} &  & \ref{rd32}\\
+	\ref{rf20} & \ref{rd33} & \ref{rd32} & \ref{rd39}\\
 \hline
 \end{tabular}
 \end{center}
@@ -633,7 +655,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	\ref{rd31} & \ref{rf19} &  & \\
 \hline
-	\ref{rd32} &  &  & \ref{rf20} \\
+	\ref{rd32} &  & \ref{rf20} & \\
 \hline
 	\ref{rd33} & \ref{rf20} &  & \\
 \hline
@@ -642,6 +664,12 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 	\ref{rd35} & \ref{rf4} &  & \\
 \hline
 	\ref{rd36} & \ref{rf5} &  & \\
+\hline
+	\ref{rd37} &  & \ref{rf18} & \\
+\hline
+	\ref{rd38} &  & \ref{rf19} & \\
+\hline
+	\ref{rd39} &  & & \ref{rf20} \\
 \hline
 \end{tabular}
 \end{center}
