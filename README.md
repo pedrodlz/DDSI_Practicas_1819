@@ -182,19 +182,13 @@
 	
 ## Instrucciones
 
-    • El documento debe tener formato pdf e incluir:
+    • Diseño:
+	-Esquema de caja negra.
+    	-Esquema armazón F (DFD0), esquema armazón D (ED0) y esquemas externos (EE0).
+    	-Para cada nivel de refinamiento desde el 1 en adelante, con 2 planos de refinamiento para cada una de las áreas funcionales:
+        	+Los refinamientos parciales (separados) de cada elemento refinable del plano de refinamiento DFD anterior.
+        	+El plano de refinamiento DFD como unión de todos los refinamientos del plano de refinamiento DFD anterior.
+        	+Esquemas externos del plano de refinamiento DFD.
+        	+El plano de refinamiento E/R como unión de todos los esquemas externos del plano de refinamiento DFD.
+    	-Esquemas DFD y E/R finales (como copia del último refinamiento realizado). El esquema E/R final deberá contar con todos los atributos, participaciones y cardinalidades.
 
-  	 - Portada.
-  	 - Índice.
- 	  - Descripción completa del problema de gestión de información que resolverá el sistema de información propuesto.
- 	  - Análisis de requisitos extraídos de la descripción completa, proporcionando:
- 	      - Requisitos de datos.
-  	     - Requisitos funcionales.
-  	     - Restricciones semánticas.
-   	    - Validación cruzada de requisitos.
-
-    • El sistema de información propuesto debe garantizar lo siguiente:
-
-   	- Los requisitos deben poder agruparse en cuatro áreas funcionales.
-   	- Cada área funcional debe tener al menos cuatro requisitos funcionales.
-   	- Las funciones básicas (altas, bajas y modificaciones de datos básicos) no deben realizarse en más de un área funcional (por ejemplo, un alta de datos básicos solamente aparecerá en un área funcional y no se podrán proponer altas de datos básicos en más áreas funcionales).
