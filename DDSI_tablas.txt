@@ -1,0 +1,18 @@
+Usuarios(**ID**,nomUsuario,email,contraseña,nombre,tipo)
+
+Canciones(**ID**, nombre, artista, album, genero, duracion, fecha, num repoduc)
+
+Amigos(*ID1, ID2*)
+ID1, ID2 ---> Clave Externa a ID de Usuarios 
+
+Recomienda(*ID1, ID2, IDcancion*)
+ID1, ID2 ---> clave externa a amigos
+IDcancion --> clave externa a canciones
+
+Escucha(** *IDusuario, IDcancion* , fecha, hora **)
+IDusuario --> clave externa a usuarios
+IDcancion --> clave externa a canciones
+
+Valoraciones(*IDusuario, Idcancion*, puntuacion) 
+IDusuario  --> clave externa a usuarios
+IDcanciones -> clave externa a canciones 
