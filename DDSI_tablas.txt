@@ -1,18 +1,27 @@
-Usuarios(**ID**,nomUsuario,email,contraseña,nombre,tipo)
+Usuario(**ID_Usuario**,nomUsuario,email,contraseña,nombre,tipo,apellidos,pais)
 
-Canciones(**ID**, nombre, artista, album, genero, duracion, fecha, num repoduc)
+Cancion(**ID_Cancion**, nombre, artista, album, genero, duracion, fecha, ubicacion_audio, num repoduc, valoracion)
 
-Amigos(*ID1, ID2*)
-ID1, ID2 ---> Clave Externa a ID de Usuarios 
+Lista(**ID_Lista**, nombre, fecha, duracion)
 
-Recomienda(*ID1, ID2, IDcancion*)
-ID1, ID2 ---> clave externa a amigos
-IDcancion --> clave externa a canciones
+Amigo(*ID_Usuario1, ID_Usuario2*)
+ID_Usuario1, ID_Usuario2 ---> Clave Externa a ID de Usuario
 
-Escucha(** *IDusuario, IDcancion* , fecha, hora **)
-IDusuario --> clave externa a usuarios
-IDcancion --> clave externa a canciones
+Recomienda(** *ID_Usuario1, ID_Usuario2*, *ID_Cancion*, fecha, hora **)
+ID_Usuario1, ID_Usuario2 ---> clave externa a la agregacion de Usuario-Amigo
+ID_Cancion --> clave externa a cancion
 
-Valoraciones(*IDusuario, Idcancion*, puntuacion) 
-IDusuario  --> clave externa a usuarios
-IDcanciones -> clave externa a canciones 
+Escucha(** *ID_Usuario*, *ID_Cancion* , fecha, hora **)
+ID_Usuario --> clave externa a usuario
+ID_Cancion --> clave externa a cancion
+
+Valora(** *ID_Usuario*, *ID_Cancion* **, puntuacion) 
+ID_Usuario  --> clave externa a usuario
+ID_Cancion -> clave externa a cancion
+
+Pertenece(** *ID_Lista*,*ID_Cancion* **)
+
+ID_Lista --> clave externa a lista
+ID_Cancion --> clave externa a cancion
+
+Crea(** *ID_Lista* **, *ID_Usuario*)
