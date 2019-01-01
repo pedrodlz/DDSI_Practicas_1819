@@ -19,10 +19,23 @@ create table cancion(
     id_cancion char(8) constraint id_cancion_no_nulo not null
     constraint id_cancion_primaria primary key,
     nombre_cancion varchar2(50) constraint nombre_cancion_no_nulo not null,
-    id_usuario varchar2(8) constraint artista_c_no_nulo not null foreign key references usuario(id_usuario),
     genero varchar2(20) constraint genero_no_nulo not null,
     duracion_seg number(3) constraint duracion_seg_no_nula not null,
-    fecha_c date constraint fecha_no_nula not null,
+    fecha_c date constraint fecha_cancion_no_nula not null,
     ruta_audio varchar2(100),
     num_repro number(10),
     valoracion number(1,2));
+    
+create table lista(
+    id_lista char(8) constraint id_lista_no_nulo not null
+    constraint id_lista_primaria primary key,
+    nombre_lista varchar2(50) constraint nombre_lista_no_nulo not null,
+    fecha_l date constraint fecha_lista_no_nula not null,
+    duracion_seg number(6));
+    
+select * from user_tables;
+
+drop table prueba;
+
+commit;
+

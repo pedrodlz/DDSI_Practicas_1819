@@ -1,6 +1,6 @@
-Usuario(**ID_Usuario**,nomUsuario,email,contraseña,nombre,tipo,apellidos,pais)
+Usuario(**ID_Usuario**, nombre_usuario, email_u, contrasenia_u, nombre_per, tipo, apellidos, pais)
 
-Cancion(**ID_Cancion**, nombre, artista, album, genero, duracion, fecha, ubicacion_audio, num repoduc, valoracion)
+Cancion(**ID_Cancion**, nombre_cancion, genero, duracion, fecha, ruta_audio, num_repo, valoracion)
 
 Lista(**ID_Lista**, nombre, fecha, duracion)
 
