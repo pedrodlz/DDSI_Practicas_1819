@@ -1,8 +1,8 @@
-Usuario(**ID_Usuario**, nombre_usuario, email_u, contrasenia_u, nombre_per, tipo, apellidos, pais)
+Usuario(**ID_Usuario**, nombre_usuario, nombre_artistico, email_u, contrasenia_u, nombre_per, tipo, apellidos, pais)
 
 Cancion(**ID_Cancion**, nombre_cancion, genero, duracion, fecha, ruta_audio, num_repo, valoracion)
 
-Lista(**ID_Lista**, nombre, fecha, duracion)
+Lista(**ID_Lista**, nombre_lista, fecha, duracion)
 
 Amigo(*ID_Usuario1, ID_Usuario2*)
 ID_Usuario1, ID_Usuario2 ---> Clave Externa a ID de Usuario
@@ -25,3 +25,20 @@ ID_Lista --> clave externa a lista
 ID_Cancion --> clave externa a cancion
 
 Crea(** *ID_Lista* **, *ID_Usuario*)
+
+ID_Lista --> clave externa a lista
+ID_Usuario  --> clave externa a usuario
+
+-----
+|IDs|
+-----
+
+Las X pueden ser numeros o caracteres
+
+Usuario:
+
+UNXXXXXX --> Usuario normal 
+UAXXXXXX --> Usuario artista
+
+Cancion: CXXXXXXX
+Lista: LXXXXXXX

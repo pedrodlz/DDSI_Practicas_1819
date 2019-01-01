@@ -8,7 +8,8 @@ create table usuario(
     nombre_per varchar2(15) constraint nombre_no_nulo not null,
     apellidos_per varchar2(30),
     tipo varchar2(7) constraint tipo_correcto check (tipo in ('artista','usuario')),
-    pais varchar2(20));
+    pais varchar2(20),
+    nombre_artistico varchar2(50));
     
 commit;
     
@@ -35,7 +36,38 @@ create table lista(
     
 select * from user_tables;
 
-drop table prueba;
+drop table crea;
 
 commit;
 
+create table pertenece(
+    id_lista,
+    id_cancion,
+    constraint pertenece_clave_primaria primary key (id_lista,id_cancion),
+    constraint id_lista_ext_pertenece foreign key(id_lista) references lista(id_lista),
+    constraint id_cancion_ext_pertenece foreign key(id_cancion) references cancion(id_cancion));
+    
+create table crea(
+    id_usuario,
+    id_lista,
+    constraint crea_clave_primaria primary key (id_usuario,id_lista),
+    constraint id_usuario_ext_crea foreign key(id_usuario) references usuario(id_usuario),
+    constraint id_lista_ext_crea foreign key(id_lista) references lista(id_lista));
+
+insert into usuario (id_usuario,nombre_usuario,email_u,contrasenia_u,nombre_per,apellidos_per,tipo,pais)
+    values ('UN000001','pedrodlz','pedrodlz_email@gmail.com','pedrodlz_pass','Pedro','Domínguez López','usuario','españa');
+   
+insert into usuario (id_usuario,nombre_usuario,nombre_artistico,email_u,contrasenia_u,nombre_per,apellidos_per,tipo,pais)
+    values ('UA000001','lil_peep','Lil Peep','lil_peep@gmail.com','lil_peep_pass','Gustav','Elijah Ahr','artista','eeuu');
+    
+insert into cancion (id_cancion,nombre_cancion,genero,duracion_seg,fecha_c,ruta_audio,num_repro)
+    values ('C0000001','U Said','Trap','224','15/08/2017','/audio/C0000001','0');
+
+insert into lista (id_lista,nombre_lista,fecha_l)
+    values ('L0000001','Lista 1','01/01/2019');
+    
+insert into pertenece (id_lista,id_cancion) values ('L0000001','C0000001');
+
+describe pertenece;
+    
+select * from pertenece;
