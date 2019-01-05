@@ -1,0 +1,23 @@
+/*Sentencia para comprobar el trigger, insertamos una hipotetica recomendacion de un usuario a otro*/
+INSERT INTO recomienda (id_usuario1, id_usuario2,id_cancion,fecha) values ('UN000001','UN000002','C0000001',to_date('15/08/2017','DD/MM/YYYY'));
+/*Sentencia para insertar que el usuario ha escuchado la cancion (el trigger no deberia funcionar)*/
+INSERT INTO escucha (id_usuario,id_cancion, fecha) values ('UN000001','C0000001',to_date('15/08/2017','DD/MM/YYYY'));
+/*Sentencia para eliminar que el usuario ha escuchado la cancion (probar el trigger)*/
+DELETE FROM ESCUCHA where ID_USUARIO = 'UN000001' and ID_CANCION = 'C0000001';
+/*Sentencia para eliminar la recomendacion con la que estamos probando*/
+DELETE FROM recomienda WHERE ID_USUARIO1 = 'UN000001' and ID_CANCION = 'C0000001';
+
+SELECT * from recomienda;
+SELECT * from escucha;
+
+create or replace TRIGGER dario_trigg
+BEFORE INSERT ON recomienda
+FOR EACH ROW
+DECLARE
+existe number;
+BEGIN
+SELECT count(*) INTO existe FROM escucha WHERE id_cancion = :new.id_cancion and id_usuario = :new.id_usuario1;
+IF (existe = 0) THEN
+      RAISE_APPLICATION_ERROR(-20000,'No has escuchado la cancion');
+END IF;
+END;
