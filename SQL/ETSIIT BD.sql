@@ -14,7 +14,7 @@ create table usuario(
 commit;
     
 describe usuario;
-select * from usuario;
+select * from amigo;
 
 create table cancion(
     id_cancion char(8) constraint id_cancion_no_nulo not null
@@ -68,6 +68,8 @@ insert into lista (id_lista,nombre_lista,fecha_l)
     
 insert into pertenece (id_lista,id_cancion) values ('L0000001','C0000001');
 
+insert into crea (id_usuario,id_lista) values ('UN000001','L0000001');
+
 describe pertenece;
     
-select * from pertenece;
+select * from crea;
