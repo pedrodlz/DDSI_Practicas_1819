@@ -70,6 +70,12 @@ insert into pertenece (id_lista,id_cancion) values ('L0000001','C0000001');
 
 insert into crea (id_usuario,id_lista) values ('UN000001','L0000001');
 
+insert into cancion (id_cancion,nombre_cancion,genero,duracion_seg,fecha_c,ruta_audio,num_repro)
+values ('C0000002','All I want for Christmas is you','Pop','241',to_date('01/10/1994','DD/MM/YYYY'),'/audio/C0000002','0');
+
+insert into usuario (id_usuario,nombre_usuario,nombre_artistico,email_u,contrasenia_u,nombre_per,apellidos_per,tipo,pais)
+values ('UA000002','mariah_car','Mariah Carey','mariah_car@gmail.com','mariah_pass','Mariah','Carey','artista','eeuu');
+
 describe pertenece;
     
 select * from crea;
