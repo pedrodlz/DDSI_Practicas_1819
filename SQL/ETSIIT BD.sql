@@ -71,3 +71,40 @@ insert into pertenece (id_lista,id_cancion) values ('L0000001','C0000001');
 describe pertenece;
     
 select * from pertenece;
+                                                                        
+CREATE
+  TABLE amigo
+  (
+    id_usuario1,
+    id_usuario2,
+    CONSTRAINT clave_primaria PRIMARY KEY (id_usuario1,id_usuario2),
+    CONSTRAINT id_usuario1_ext_pertenece FOREIGN KEY(id_usuario1) REFERENCES
+    usuario(id_usuario),
+    CONSTRAINT id_usuario2_ext_pertenece FOREIGN KEY(id_usuario2) REFERENCES
+    usuario(id_usuario)
+  );
+                                                                        
+INSERT
+INTO
+  usuario
+  (
+    id_usuario,
+    nombre_usuario,
+    email_u,
+    contrasenia_u,
+    nombre_per,
+    apellidos_per,
+    tipo,
+    pais
+  )
+  VALUES
+  (
+    'UN000002',
+    'darahh',
+    'darahh@mail.com',
+    'pass_secreto',
+    'Dario',
+    'Abad Tarifa',
+    'usuario',
+    'españa'
+  );
