@@ -112,3 +112,13 @@ INTO
     'usuario',
     'españa'
   );
+                                                                        
+create table recomienda(
+  id_usuario1,
+  id_usuario2,
+  id_cancion,
+  fecha date not null,
+  constraint clave_pri primary key (id_usuario1,id_usuario2,id_cancion),
+  foreign key (id_usuario1,id_usuario2) references amigo(id_usuario1,id_usuario2),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
