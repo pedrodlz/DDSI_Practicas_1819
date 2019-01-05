@@ -18,11 +18,10 @@ no_escuchada EXCEPTION;
 existe number;
 BEGIN
 SELECT count(*) INTO existe FROM escucha WHERE id_cancion = :new.id_cancion and id_usuario = :new.id_usuario1;
-IF (existe = 0) THEN
-       RAISE no_escuchada;
-END IF;
-EXCEPTION
-WHEN no_escuchada
-THEN
- RAISE_APPLICATION_ERROR(-20000,'No has escuchado la cancion');
-END;  
+    IF (existe = 0) THEN
+           RAISE no_escuchada;
+    END IF;
+    EXCEPTION
+    WHEN no_escuchada THEN
+    RAISE_APPLICATION_ERROR(-20000,'No has escuchado la cancion');
+END;
