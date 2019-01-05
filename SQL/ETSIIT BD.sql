@@ -123,6 +123,15 @@ create table recomienda(
   foreign key (id_cancion) references cancion(id_cancion)
 );
                                                                         
+create table valora(
+  id_usuario,
+  id_cancion,
+  puntuacion number(1,1),
+  primary key (id_usuario,id_cancion),
+  foreign key (id_usuario) references usuario(id_usuario),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+                                                                        
 create table escucha(
   id_usuario,
   id_cancion,
