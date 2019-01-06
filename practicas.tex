@@ -15,6 +15,7 @@
 \usepackage{enumitem}
 \usepackage{forest}
 \usepackage{hyperref}
+\usepackage{fancybox}
 
 %Uso de la fuente Source Sans Pro
 
@@ -60,6 +61,8 @@
   urlcolor=blue
 }
 
+\setcounter{secnumdepth}{5}
+
 \setlength{\parindent}{0pt}
 \topmargin0.0cm
 \headheight0.0cm
@@ -79,7 +82,7 @@
   {\scshape\large Diseño y Desarrollo de Sistemas de Información \par} \vspace{1cm}
   {\huge\bfseries Diseño de un sistema de información para la gestión y reproducción de música. \par}
   \vspace{0.4cm}
-  {\large\itshape P1.Descripción del sistema y especificación de requisitos\\}
+  {\large\itshape Entrega final.}
   \vspace{0.6cm}
   {\large\itshape  Darío Abad Tarifa \\ Juan Francisco Díaz Moreno \\ Pedro Domínguez López \\ Javier Sáez de la Coba \par} \vspace{1.00cm}
   Curso 2018-2019 \\
@@ -676,6 +679,113 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \caption{Requisitos de datos}
 \end{table}
 
+\section{Diseño.}
+\subsection{Esquema de caja negra.}
+  \begin{center}
+  \shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/caja_negra.png}\par\vspace{1cm}}
+  \end{center}
+\subsection{Esquema armazón DFD0.}
+  \begin{center}
+  \shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD0.png}\par\vspace{1cm}}
+  \end{center}
+\subsection{Esquemas externos del DFD0.}
+	%No se que esquemas son estos
+\subsection{Esquema armazón D (ER0).}
+	Unión de los esquemas externos.
+	%No se que esquema es este	
+\subsection{Refinamientos.}
+\subsubsection{Módulo social.}
+\paragraph{DFD1}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD1_social.png}\par\vspace{1cm}}
+\end{center}	
+\paragraph{DFD2}
+\subparagraph{Primer plano de refinamiento.}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD2_4-1_social.png}\par\vspace{1cm}}    
+\end{center}
+\newpage
+\subparagraph{Segundo plano de refinamiento.}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD2_4-2_social.png}\par\vspace{1cm}}    
+\end{center}
+\paragraph{Esquema externo.}
+\begin{center}
+\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/EE_social.png}\par\vspace{1cm}}
+\end{center} 
+\subsubsection{Módulo escuchar canciones.}
+\subsubsection{Unión de módulos DFD1.}
+\begin{center}
+\shadowbox{\includegraphics[width=0.7\textwidth]{imagenes/DFD1_union.png}\par\vspace{1cm}}
+\end{center}
+\subsubsection{Unión de módulos DFD2.}
+\begin{center}
+\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/DFD2_union.png}\par\vspace{1cm}}
+\end{center}
 
+\subsection{Esquema entidad relación.}
+\begin{center}
+\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/ER.png}\par\vspace{1cm}}
+\end{center}
+
+\subsection{Paso a tablas.}
+Tabla usuario.
+
+	Clave primaria: ID usuario.
+	
+	Resto de atributos: nombre usuario, nombre artistico, email, contraseña, nombre, apellidos, tipo, pais.
+
+Tabla canción.
+
+	Clave primaria: ID cancion.
+	
+	Resto de atributos: nombre, genero, duración, fecha, ruta audio, numero de reproducciones, valoración.
+
+Tabla lista.
+
+	Clave primaria: ID lista.
+	
+	Resto de atributos: nombre, fecha, duración.
+	
+Tabla amigo.
+
+	Clave primaria: ID usuario1, ID usuario2.
+	Ambas como claves externas a ID usuario de la tabla usuario.
+	
+Tabla recomienda.
+
+	Clave primaria: ID usuario1, ID usuario2, ID cancion, fecha.
+	
+	ID usuario1 e ID usuario2 como claves externas a la tabla amigo.
+	ID cancion como clave externa a la tabla cancion.
+	
+Tabla escucha.
+	
+	Clave primaria: ID usuario1, ID usuario2, fecha.
+	
+	ID usuario1 e ID usuario2 como claves externas a la tabla cancion.
+	
+Tabla valora.
+
+	Clave primaria: ID usuario, ID cancion.
+	
+	ID usuario como clave externa a la tabla usuario.
+	ID cancion como clave externa a la tabla cancion.
+	
+	Resto de atributos: puntuación.
+	
+Tabla pertenece.
+
+	Clave primaria: ID lista, ID cancion.
+	
+	ID lista como clave externa a la tabla lista.
+	ID cancion como clave externa a la tabla cancion.
+	
+Tabla crea.
+	
+	Clave primaria: ID lista, ID usuario.
+	
+	ID lista como clave externa a la tabla lista.
+	ID usuario como clave externa la tabla usuario.
 
 \end{document}
