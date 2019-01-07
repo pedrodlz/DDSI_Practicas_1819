@@ -16,6 +16,7 @@
 \usepackage{forest}
 \usepackage{hyperref}
 \usepackage{fancybox}
+\usepackage{listings}
 
 %Uso de la fuente Source Sans Pro
 
@@ -84,7 +85,7 @@
   \vspace{0.4cm}
   {\large\itshape Entrega final.}
   \vspace{0.6cm}
-  {\large\itshape  Darío Abad Tarifa \\ Juan Francisco Díaz Moreno \\ Pedro Domínguez López \\ Javier Sáez de la Coba \par} \vspace{1.00cm}
+  {\large\itshape \\ Darío Abad Tarifa \\ Juan Francisco Díaz Moreno \\ Pedro Domínguez López \\ Javier Sáez de la Coba \par} \vspace{1.00cm}
   Curso 2018-2019 \\
   \vfill
 
@@ -741,6 +742,7 @@ Tabla canción.
 	
 	Resto de atributos: nombre, genero, duración, fecha, ruta audio, numero de reproducciones, valoración.
 
+
 Tabla lista.
 
 	Clave primaria: ID lista.
@@ -787,5 +789,239 @@ Tabla crea.
 	
 	ID lista como clave externa a la tabla lista.
 	ID usuario como clave externa la tabla usuario.
+	
+\section{Implementación.}
+\subsection{Diseño físico de la base de datos.}
+\newpage
+
+\subsubsection{Sentencias SQL.}
+\begin{lstlisting}[language=SQL]
+create table usuario(
+    id_usuario char(8) constraint id_usuario_no_nulo not null
+    constraint id_usuario_primaria primary key,
+    nombre_usuario varchar2(15) 
+    	constraint nombre_usuario_no_nulo not null
+    constraint nombre_usuario_candidata unique,
+    email_u varchar2(40) constraint email_no_nulo not null,
+    contrasenia_u varchar2(40) constraint contrasenia_no_nula not null,
+    nombre_per varchar2(15) constraint nombre_no_nulo not null,
+    apellidos_per varchar2(30),
+    tipo varchar2(7) constraint tipo_correcto 
+    	check (tipo in ('artista','usuario')),
+    pais varchar2(20),
+    nombre_artistico varchar2(50));
+    
+create table cancion(
+    id_cancion char(8) constraint id_cancion_no_nulo not null
+    constraint id_cancion_primaria primary key,
+    nombre_cancion varchar2(50) 
+    	constraint nombre_cancion_no_nulo not null,
+    genero varchar2(20) constraint genero_no_nulo not null,
+    duracion_seg number(3) constraint duracion_seg_no_nula not null,
+    fecha_c date constraint fecha_cancion_no_nula not null,
+    ruta_audio varchar2(100),
+    num_repro number(10),
+    valoracion number(1,2));
+    
+create table lista(
+    id_lista char(8) constraint id_lista_no_nulo not null
+    constraint id_lista_primaria primary key,
+    nombre_lista varchar2(50) constraint nombre_lista_no_nulo not null,
+    fecha_l date constraint fecha_lista_no_nula not null,
+    duracion_seg number(6));
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[language=SQL]
+create table pertenece(
+    id_lista,
+    id_cancion,
+    constraint pertenece_clave_primaria primary key (id_lista,id_cancion),
+    constraint id_lista_ext_pertenece foreign key(id_lista) 
+    	references lista(id_lista),
+    constraint id_cancion_ext_pertenece foreign key(id_cancion) 
+    	references cancion(id_cancion));
+
+create table crea(
+    id_usuario,
+    id_lista,
+    constraint crea_clave_primaria primary key (id_usuario,id_lista),
+    constraint id_usuario_ext_crea foreign key(id_usuario) 
+    	references usuario(id_usuario),
+    constraint id_lista_ext_crea foreign key(id_lista) 
+    	references lista(id_lista));
+
+CREATE TABLE amigo
+  (
+    id_usuario1,
+    id_usuario2,
+    CONSTRAINT clave_primaria PRIMARY KEY (id_usuario1,id_usuario2),
+    CONSTRAINT id_usuario1_ext_pertenece FOREIGN KEY(id_usuario1) 
+    REFERENCES usuario(id_usuario),
+    CONSTRAINT id_usuario2_ext_pertenece FOREIGN KEY(id_usuario2) 
+    REFERENCES usuario(id_usuario)
+  );
+  
+create table recomienda(
+  id_usuario1,
+  id_usuario2,
+  id_cancion,
+  fecha date not null,
+  constraint clave_pri 
+  	primary key (id_usuario1,id_usuario2,id_cancion,fecha),
+  foreign key (id_usuario1,id_usuario2) 
+  	references amigo(id_usuario1,id_usuario2),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[language=SQL]
+create table valora(
+  id_usuario,
+  id_cancion,
+  puntuacion number(1,1),
+  primary key (id_usuario,id_cancion),
+  foreign key (id_usuario) references usuario(id_usuario),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+
+create table escucha(
+  id_usuario,
+  id_cancion,
+  fecha date not null,
+  primary key (id_usuario,id_cancion,fecha),
+  foreign key (id_usuario) references usuario(id_usuario),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+
+\end{lstlisting}
+\newpage
+\subsection{Implementación modulo social.}
+\subsubsection{Implementación del disparador.}
+	Este disparador controla la inserción de una tupla en la tabla recomendación. Es decir comprueba una condición cuando un usuario recomienda una canción a otro usuario. Dicha condición consiste en que un usuario no puede recomendar una canción si no la ha escuchado previamente.
+	
+	Básicamente, el funcionamiento consiste en comprobar la tabla escucha (donde reside el registro de reproducciones que han realizado los usuarios) y mirar si el usuario que recomienda ha reproducido la canción que se recomienda canción. Si no encuentra ningún resultado, levanta una excepción.
+
+\begin{lstlisting}[language=SQL]
+create or replace TRIGGER dario_trigg
+BEFORE INSERT ON recomienda
+FOR EACH ROW
+DECLARE
+no_escuchada EXCEPTION;
+existe number;
+BEGIN
+SELECT count(*) INTO existe FROM escucha 
+WHERE id_cancion = :new.id_cancion and id_usuario = :new.id_usuario1;
+    IF (existe = 0) THEN
+           RAISE no_escuchada;
+    END IF;
+    EXCEPTION
+    WHEN no_escuchada THEN
+    RAISE_APPLICATION_ERROR(-20000,'No has escuchado la cancion');
+END;
+\end{lstlisting}
+\newpage
+\subsubsection{Implementación de un proceso.}
+	El proceso acordado para la implementación consiste mostrar que están escuchando mis amigos. Debido a la dificultad de mostrar lo que se está reproduciendo en un instante, se decidió mostrar las reproducciones realizadas ``hoy'', es decir, en un día completo.
+	
+	El proceso ha sido implementado en Python y la interfaz es línea de comandos (CLI), debido a la falta de tiempo y el poco conocimiento a cerca de interfaces gráficas. 
+	
+	La conexión a la base de datos se realiza mediante el paquete ``cx\_Oracle'', que nos permite realizar las consultas y manejar los datos consultados.
+
+
+
+\begin{lstlisting}[language=Python,frame=single,showstringspaces=false]
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import os
+import cx_Oracle
+
+
+def menu():
+	print ("Opciones disponibles:")
+	print ("\t1 - Ver que han escuchado mis amigos hoy.")
+	print ("\t0 - Salir")
+
+def mostrar_info_amigo(info_amigo):
+	for row in info_amigo:
+		print "Usuario: " + row[0]
+		print "Nombre: " + row[1] + " " + row[2]
+	print "-----------------------------------------"
+
+###########################################################
+
+conn_str = 'USUARIO/PASSWORD@HOSTNAME:PORT/SERVICENAME'
+conn = cx_Oracle.connect(conn_str)
+
+my_id = 'UN000002' # Hipotético usuario logueado en el sistema
+hoy = '17/09/2017' # Hipotécica fecha actual
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[language=Python,frame=single,tabsize=2,showstringspaces=false]
+c = conn.cursor()
+
+while True:
+	menu()
+
+	opcionMenu = str(input("Selecciona una acción: "))
+
+	if opcionMenu == '1':
+	#Listamos los amigos
+		c.execute("SELECT id_usuario2 FROM amigo 
+						      WHERE id_usuario1 = '%s'" % (my_id))
+		id_amigos = c.fetchall()
+		
+		contador = 1
+		info_amigo = []
+		#MOSTRAR LISTA DE AMIGOS
+		print "-----------------------------------------"
+		for ID in id_amigos: 
+			c.execute("SELECT nombre_usuario, nombre_per, apellidos_per 
+			              FROM usuario WHERE id_usuario = '%s'" % (ID))
+			info_amigo = c.fetchall()
+			print "Amigo " + str(contador)
+			mostrar_info_amigo(info_amigo)
+			contador += 1
+
+		opcionMenu = str(input("Selecciona un amigo: "))
+		num_usuario = int(opcionMenu)-1
+
+		#RECUPERAR ID AMIGO SELECCIONADO
+		c.execute("SELECT id_usuario2 FROM amigo 
+		               WHERE id_usuario1 = '%s'" % (my_id))
+		id_amigos = c.fetchall()
+		amigo = id_amigos[num_usuario]
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[language=Python,frame=single,tabsize=2,showstringspaces=false]
+		#Recuperamos nombre de amigo
+		c.execute("SELECT nombre_usuario FROM usuario 
+		               WHERE id_usuario = '%s'" % (amigo[0]))
+		nombre_amigo = c.fetchone()
+		
+		#Consultamos las canciones escuchadas hoy por el amigo 
+		#seleccionado
+		c.execute("SELECT * FROM escucha WHERE id_usuario = '%s' 
+				and fecha = to_date('%s','DD/MM/YYYY')" % (amigo[0], hoy))
+		canciones = c.fetchall()
+
+
+		#Mostramos lista de canciones escuchadas por el amigo 
+		#seleccionado
+		print "\n-----------------------------------------"				
+		print "Lista de canciones escuchadas hoy por %s:" 
+		                                              % (nombre_amigo)
+		for cancion in canciones:
+			c.execute("SELECT nombre_cancion FROM cancion 
+			          WHERE id_cancion = '%s'" % (cancion[1]))
+			nombre_cancion = c.fetchone()[0]
+			print "- " + nombre_cancion
+
+		print "\n\n"
+	
+
+	if opcionMenu == '0':
+		conn.close()
+		break
+\end{lstlisting}
 
 \end{document}
