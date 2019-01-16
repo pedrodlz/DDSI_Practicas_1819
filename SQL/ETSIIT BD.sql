@@ -78,7 +78,7 @@ values ('UA000002','mariah_car','Mariah Carey','mariah_car@gmail.com','mariah_pa
 
 describe pertenece;
     
-select * from crea;
+select * from lista;
 
 select * from pertenece;
                                                                         
