@@ -1,0 +1,22 @@
+/* Sentencia para comprobar el trigger: insertamos una canción con una valoración media alta (>= 8) */
+INSERT INTO cancion (id_cancion,nombre_cancion,genero,duracion_seg,fecha_c,valoracion)
+	values ('C0000015','Desahucio','Rap','205',to_date('18/05/2018','DD/MM/YYYY'),'9');
+
+/* Sentencia para intentar borrar la nueva canción */
+DELETE FROM cancion WHERE id_cancion = 'C0000015';
+
+CREATE OR REPLACE TRIGGER juanFrancisco_trigg
+BEFORE DELETE ON cancion
+FOR EACH ROW
+DECLARE
+	val NUMBER(1,2);
+BEGIN
+	SELECT * INTO val FROM cancion WHERE id_cancion = :new.id_cancion;
+	IF (val >= 8) THEN
+		RAISE val_alta;
+	END IF;
+
+	EXCEPTION
+	WHEN val_alta THEN
+	RAISE_APPLICATION_ERROR(-20001,'No se puede borrar esa canción, tiene una valoración media alta.');
+END;
