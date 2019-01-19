@@ -18,6 +18,8 @@
 \usepackage{fancybox}
 \usepackage{listings}
 
+
+
 %Uso de la fuente Source Sans Pro
 
 \usepackage[default]{sourcesanspro}
@@ -102,19 +104,19 @@
 
 Una empresa de streaming de audio quiere rehacer su plataforma de gestión de música (todo el servicio excepto el propio streaming de música). Para ello requiere que puedan haber cuentas de oyentes y de artistas.
 
-El sistema ofrece un servicio de musica en streaming, es decir permite que un usuario pueda buscar una cancion, un album o una lista de musica en la base 
+El sistema ofrece un servicio de música en streaming, es decir permite que un usuario pueda buscar una canción, un álbum o una lista de música en la base 
 de datos para posteriormente escucharla. 
 
-Las listas funcionan como si de un directorio se tratase, el usuario las gestiona como quiere y en ellas guarda sus canciones favoritas o canciones segun un tema especifico.  
+Las listas funcionan como si de un directorio se tratase, el usuario las gestiona como quiere y en ellas guarda sus canciones favoritas o canciones según un tema especifico.  
 
 El sistema ofrece ademas diferentes opciones de carácter social para facilitar la relación entre amigos y los artistas con sus oyentes. Un usuario puede seguir a otro usuario (sea artista o no) para estar al corriente de lo que escucha proporcionando el nombre del usuario al que quiere seguir. Un usuario podrá recomendar una canción a otro usuario proporcionando el nombre de este y el identificador de la canción que quiere recomendar. Un usuario podrá solicitar un resumen sobre las canciones que escucha su lista de amigos. 
-Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, los usuarios oyentes pueden valorar las canciones que escuchan. Por último podrán visualizar las canciones mejor valoradas por un usuario proporcionando su nombre de usuario.P
+Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, los usuarios oyentes pueden valorar las canciones que escuchan. Por último podrán visualizar las canciones mejor valoradas por un usuario proporcionando su nombre de usuario.
 
 \section{Análisis de requisitos.}
 
 \subsection{Requisitos de datos}
 
-\begin{enumerate}[label=\textnormal{RD\arabic*.}]
+\begin{enumerate}[label=\textnormal{RD\arabic*}]
 
 	\item Identificador de la canción, álbum o lista para escuchar: \label{rd1}
 		\begin{itemize}
@@ -156,7 +158,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 		    \item Nombre de la lista
 		    \item Canciones que contiene
 		    \item Duración de la lista
-		    \item Fecha de creacion
+		    \item Fecha de creación
 		    \item Usuario al que pertenece
 		    \item Seguidores
 		\end{itemize}
@@ -166,7 +168,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Identificador de la lista
 		\end{itemize}
 		
-	\item Nombre para la busqueda de una cancion, album o lista: \label{rd6}
+	\item Nombre para la búsqueda de una canción, álbum o lista: \label{rd6}
 		\begin{itemize}
 			\item Nombre
 		\end{itemize}
@@ -178,7 +180,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Nombre
 			\item Usuario o artista
 			\item Fecha de publicación o de creación
-			\item Duracionr
+			\item Duración
 		\end{itemize}
 		
 	\item Datos para crear una lista nueva: \label{rd8}
@@ -366,10 +368,10 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Identificador de la lista de reproducción
 		\end{itemize}
 		
-	\item Datos canciones que estan siendo escuchadas  \label{rd37}
+	\item Datos canciones que están siendo escuchadas  \label{rd37}
 		\begin{itemize}
-			\item Identificador de la cancion
-			\item Identificador de usuario que escucha la cancion
+			\item Identificador de la canción
+			\item Identificador de usuario que escucha la canción
 		\end{itemize}
 				
 	\item Datos recomendaciones almacenadas  \label{rd38}
@@ -381,17 +383,26 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 		
 	\item Datos canciones mejor valoradas \label{rd39}
 		\begin{itemize}
-			\item Nombre de la cancion
+			\item Nombre de la canción
 			\item Nombre del artista
 			\item Valoración
 		\end{itemize}
 
+	\item Identificador de un álbum para eliminar \label{rd40}
+		\begin{itemize}
+			\item Identificador del álbum a eliminar
+		\end{itemize}
+		
+	\item Identificador de álbum introducido \label{rd41}
+		\begin{itemize}
+			\item Identificador del álbum a eliminar
+		\end{itemize}
 \end{enumerate}
 
 
 \subsection{Requisitos funcionales}
 
-\begin{enumerate}[label=\textnormal{RF\arabic*.}]
+\begin{enumerate}[label=\textnormal{RF\arabic*}]
 
 %%%%%%%%%%%%%%%%%% AREA FUNCIONAL ESCUCHAR CANCIONES
 
@@ -534,6 +545,12 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 			\item Entrada:  \ref{rd33}
 			\item Consulta: \ref{rd32}
 			\item Salida: \ref{rd39}
+		\end{itemize}
+		
+	 \item Eliminar un álbum existente. Un usuario artista proporciona el identificador de uno de sus álbumes para eliminarlo \label{rf21}
+	 	\begin{itemize}
+			\item Entrada:  \ref{rd40}
+			\item Consulta: \ref{rd41}
 		\end{itemize}	
    
 \end{enumerate}
@@ -585,6 +602,8 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 	\ref{rf19} & \ref{rd31} & \ref{rd38} & \ref{rd28}\\
 \hline
 	\ref{rf20} & \ref{rd33} & \ref{rd32} & \ref{rd39}\\
+\hline
+	\ref{rf21} & \ref{rd40} & \ref{rd41} & \\
 \hline
 \end{tabular}
 \end{center}
@@ -675,6 +694,10 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 	\ref{rd39} &  & & \ref{rf20} \\
 \hline
+	\ref{rd40} & \ref{rf21} & &  \\
+\hline
+	\ref{rd41} &  & \ref{rf21} &  \\
+\hline
 \end{tabular}
 \end{center}
 \caption{Requisitos de datos}
@@ -691,29 +714,18 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
   \end{center}
 \subsection{Esquemas externos del DFD0.}
 	%No se que esquemas son estos
+	\subsubsection{EE0 Módulo social}
+  \begin{center}
+  \shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/EE0_social.png}\par\vspace{1cm}}
+  \end{center}
 \subsection{Esquema armazón D (ER0).}
 	Unión de los esquemas externos.
 	%No se que esquema es este	
 \subsection{Refinamientos.}
-\subsubsection{Módulo social.}
-\paragraph{DFD1}
-\begin{center}
-\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD1_social.png}\par\vspace{1cm}}
-\end{center}	
-\paragraph{DFD2}
-\subparagraph{Primer plano de refinamiento.}
-\begin{center}
-\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD2_4-1_social.png}\par\vspace{1cm}}    
-\end{center}
-\newpage
-\subparagraph{Segundo plano de refinamiento.}
-\begin{center}
-\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD2_4-2_social.png}\par\vspace{1cm}}    
-\end{center}
-\paragraph{Esquema externo.}
-\begin{center}
-\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/EE_social.png}\par\vspace{1cm}}
-\end{center} 
+
+
+
+%%%%%%%%%%%%%%%%% MODULO ESCUCHAR CANCIONES
 \subsubsection{Módulo escuchar canciones.}
 \paragraph{DFD1}
 \begin{center}
@@ -732,13 +744,76 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \begin{center}
 \shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/EE_escuchar_musica.png}\par\vspace{1cm}}
 \end{center}
+
+%%%%%%%%%%%%%%%%% MODULO GESTIONAR CANCIONES
+\subsubsection{Módulo gestionar canciones.}
+\paragraph{DFD1}
+\begin{center}
+\shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/DFD1_Gestion_de_canciones.pdf}\par\vspace{1cm}}
+\end{center}
+\paragraph{EE1}
+\begin{center}
+\shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/EE1_Gestion_de_canciones.pdf}\par\vspace{1cm}}
+\end{center}
+\paragraph{DFD2}
+\begin{center}
+\shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/DFD2_Gestion_de_canciones.pdf}\par\vspace{1cm}}    
+\end{center}
+\paragraph{Esquema externo.}
+\begin{center}
+\shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/EE2_Gestion_de_canciones.pdf}\par\vspace{1cm}}
+\end{center}
+
+%%%%%%%%%%%%%%%%% MODULO GESTIÓN DE USUARIOS
+\subsubsection{Módulo gestión de usuarios.}
+\paragraph{DFD1}
+\begin{center}
+\shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/DFD1_Gestion_de_usuarios.pdf}\par\vspace{1cm}}
+\end{center}
+\paragraph{DFD2}
+\begin{center}
+\shadowbox{\includegraphics[width=0.8\textwidth]{imagenes/DFD2_Gestion_de_usuarios.pdf}\par\vspace{1cm}}    
+\end{center}
+\paragraph{Esquema externo.}
+\begin{center}
+\shadowbox{\includegraphics[width=1\textwidth]{imagenes/EE2_usuarios.pdf}\par\vspace{1cm}}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%% MODULO SOCIAL
+\subsubsection{Módulo social.}
+\paragraph{DFD1}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD1_social.png}\par\vspace{1cm}}
+\end{center}	
+\paragraph{EE1}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/EE1_social.png}\par\vspace{1cm}}
+\end{center}
+\paragraph{DFD2}
+\subparagraph{Primer plano de refinamiento.}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD2_4-1_social.png}\par\vspace{1cm}}    
+\end{center}
+\newpage
+\subparagraph{Segundo plano de refinamiento.}
+\begin{center}
+\shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/DFD2_4-2_social.png}\par\vspace{1cm}}    
+\end{center}
+\paragraph{Esquema externo.}
+\begin{center}
+\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/EE_social.png}\par\vspace{1cm}}
+\end{center} 
+
+
+%%%%%%%%%%%%%%%%% UNIONES DE ESQUEMAS
 \subsubsection{Unión de módulos DFD1.}
 \begin{center}
-\shadowbox{\includegraphics[width=0.7\textwidth]{imagenes/DFD1_union.png}\par\vspace{1cm}}
+\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/DFD1.pdf}\par\vspace{1cm}}
 \end{center}
 \subsubsection{Unión de módulos DFD2.}
 \begin{center}
-\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/DFD2_union.png}\par\vspace{1cm}}
+\shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/DFD2.pdf}\par\vspace{1cm}}
 \end{center}
 
 \subsection{Esquema entidad relación.}
@@ -746,66 +821,140 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \shadowbox{\includegraphics[width=1.0\textwidth]{imagenes/ER.png}\par\vspace{1cm}}
 \end{center}
 
+
+
+
 \subsection{Paso a tablas.}
-Tabla usuario.
 
-	Clave primaria: ID usuario.
-	
-	Resto de atributos: nombre usuario, nombre artistico, email, contraseña, nombre, apellidos, tipo, pais.
+%Tabla usuario.
 
-Tabla canción.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Usuarios}} \\ \hline
+Clave primaria & ID usuario \\ \hline
+Resto de atributos & \begin{tabular}[c]{@{}c@{}}nombre usuario, nombre artistico,\\ email, contraseña, nombre, apellidos, tipo, pais.\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
 
-	Clave primaria: ID cancion.
-	
-	Resto de atributos: nombre, genero, duración, fecha, ruta audio, numero de reproducciones, valoración.
+%Tabla canción.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Canción}} \\ \hline
+Clave primaria & ID canción \\ \hline
+Resto de atributos & \begin{tabular}[c]{@{}c@{}}nombre, genero, duración, fecha, ruta audio,\\ numero de reproducciones, valoración.\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
 
-Tabla lista.
+%Tabla lista.
+	
+	
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Lista}} \\ \hline
+Clave primaria & ID lista \\ \hline
+Resto de atributos & \begin{tabular}[c]{@{}c@{}}nombre, fecha, duración.\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+	
+%Tabla amigo.
 
-	Clave primaria: ID lista.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Amigo}} \\ \hline
+Clave primaria & ID usuario1, ID usuario2. \\ \hline
+\multicolumn{2}{|c|}{Ambas son claves externas a ID usuario de la tabla usuario} \\ \hline
+\end{tabular}
+\end{table}
 	
-	Resto de atributos: nombre, fecha, duración.
 	
-Tabla amigo.
+	
+%Tabla recomienda.
+	
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Recomienda}} \\ \hline
+Clave primaria & ID usuario1, ID usuario2, ID cancion, fecha. \\ \hline
+\multicolumn{2}{|c|}{\begin{tabular}[c]{@{}c@{}}ID usuario1 e ID usuario2 como claves externas a la tabla amigo.\\ ID cancion como clave externa a la tabla cancion.\end{tabular}
 
-	Clave primaria: ID usuario1, ID usuario2.
-	Ambas como claves externas a ID usuario de la tabla usuario.
+	} \\ \hline
+\end{tabular}
+\end{table}
 	
-Tabla recomienda.
-
-	Clave primaria: ID usuario1, ID usuario2, ID cancion, fecha.
+%Tabla escucha.
 	
-	ID usuario1 e ID usuario2 como claves externas a la tabla amigo.
-	ID cancion como clave externa a la tabla cancion.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Escucha}} \\ \hline
+Clave primaria & ID cancion, ID usuario, fecha \\ \hline
+\multicolumn{2}{|c|}{
+	\begin{tabular}[c]{@{}c@{}}
+	  ID usuario como clave externa a la tabla usuario.\\
+	  ID canción como clave externa a la tabla canción.
+	\end{tabular}} \\ \hline
+\end{tabular}
+\end{table}
 	
-Tabla escucha.
+%Tabla valora.
 	
-	Clave primaria: ID usuario1, ID usuario2, fecha.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Valora}} \\ \hline
+Clave primaria & ID usuario, ID cancion \\ \hline
+\multicolumn{2}{|c|}{
+	\begin{tabular}[c]{@{}c@{}}
+	  ID usuario como clave externa a la tabla usuario.\\
+	  ID canción como clave externa a la tabla canción.
+	\end{tabular}} \\ \hline
+	Resto de atributos & puntuación \\ \hline
+\end{tabular}
+\end{table}
 	
-	ID usuario1 e ID usuario2 como claves externas a la tabla cancion.
+%Tabla pertenece.
 	
-Tabla valora.
-
-	Clave primaria: ID usuario, ID cancion.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Pertenece}} \\ \hline
+Clave primaria & ID lista, ID cancion \\ \hline
+\multicolumn{2}{|c|}{
+	\begin{tabular}[c]{@{}c@{}}
+	  ID lista como clave externa a la tabla lista.\\
+	  ID canción como clave externa a la tabla canción.
+	\end{tabular}} \\ \hline
+\end{tabular}
+\end{table}
 	
-	ID usuario como clave externa a la tabla usuario.
-	ID cancion como clave externa a la tabla cancion.
+%Tabla crea.
 	
-	Resto de atributos: puntuación.
-	
-Tabla pertenece.
-
-	Clave primaria: ID lista, ID cancion.
-	
-	ID lista como clave externa a la tabla lista.
-	ID cancion como clave externa a la tabla cancion.
-	
-Tabla crea.
-	
-	Clave primaria: ID lista, ID usuario.
-	
-	ID lista como clave externa a la tabla lista.
-	ID usuario como clave externa la tabla usuario.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Tabla Crea}} \\ \hline
+Clave primaria & ID lista, ID usuario \\ \hline
+\multicolumn{2}{|c|}{
+	\begin{tabular}[c]{@{}c@{}}
+	  ID lista como clave externa a la tabla lista.\\
+	  ID usuario como clave externa a la tabla usuario.
+	\end{tabular}} \\ \hline
+\end{tabular}
+\end{table}
 	
 \section{Implementación.}
 \subsection{Diseño físico de la base de datos.}
