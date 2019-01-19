@@ -1077,4 +1077,49 @@ END;
 \lstinputlisting[language=Python,frame=single,tabsize=2,showstringspaces=false]{implementaciones/dario_ver_canciones_amigos.py}
 
 
+\subsection{Valoración de canciones.}
+\subsubsection{Implementación del disparador.}
+El disparador que tenemos que hacer tiene que comprobar que cuando vamos a valorar una canción, ésta ha sido escuchada al menos una vez por el usuario que valora. Para hacer esto implementamos un disparador que se ejecuta antes de cada operación \texttt{INSERT} en la tabla \texttt{valora}.
+
+Este disparador lo que hace es comprobar el número de escuchas que ha tenido la canción a valorar por el usuario que valora. Si este número es 0 (no ha escuchado nunca la canción) lanza una excepción con un mensaje que avisa al usuario que no puede ejecutarse esta operación.
+
+El código del disparador implementado es el siguiente:
+
+\lstinputlisting[language=SQL, firstline=29, lastline=45, tabsize=2,showstringspaces=false]{SQL/javier_trigger.sql}
+
+Para probar que este disparador funciona correctamente hacemos las siguiente operaciones:
+
+- Vamos a intentar crear una valoración de una canción que no hemos escuchado
+\begin{verbatim}
+INSERT INTO valora(id_usuario, id_cancion, puntuacion) 
+values('UN000003', 'C0000001', 5.0);
+\end{verbatim}
+- Nos da un mensaje de error, ya que no hemos escuchado la canción (el disparador genera una excepción)
+\begin{verbatim}
+INSERT INTO valora(id_usuario, id_cancion, puntuacion) 
+	values('UN000003', 'C0000001', 5)
+Informe de error -
+ORA-20001: No puedes valorar una cancion que no has escuchado
+ORA-06512: en "X7151952.JAVIER_TRIGG", línea 11
+ORA-04088: error durante la ejecución del disparador 'X7151952.JAVIER_TRIGG'
+\end{verbatim}
+
+- Insertamos ahora una escucha por el usuario que desea valorar
+
+\begin{verbatim}
+INSERT INTO escucha(id_usuario, id_cancion, fecha) 
+	values('UN000003', 'C0000001', to_date('19/01/2019','DD/MM/YYYY'));
+\end{verbatim}
+- Si insertamos ahora una valoración funciona sin problemas.
+\begin{verbatim}
+1 fila insertadas
+\end{verbatim}
+
+- Devolvemos la BD a su estado original
+\begin{verbatim}
+DELETE FROM escucha where id_usuario = 'UN000003' and ID_CANCION = 'C0000001';
+DELETE FROM valora where id_usuario = 'UN000003' and ID_CANCION = 'C0000001';
+commit;
+\end{verbatim}
+
 \end{document}

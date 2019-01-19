@@ -23,7 +23,7 @@ create table cancion(
     fecha_c date constraint fecha_cancion_no_nula not null,
     ruta_audio varchar2(100),
     num_repro number(10),
-    valoracion number(1,2));
+    valoracion number(2,1));
     
 create table lista(
     id_lista char(8) constraint id_lista_no_nulo not null
@@ -85,7 +85,7 @@ create table recomienda(
 create table valora(
   id_usuario,
   id_cancion,
-  puntuacion number(1,1),
+  puntuacion number(3,1),
   primary key (id_usuario,id_cancion),
   foreign key (id_usuario) references usuario(id_usuario),
   foreign key (id_cancion) references cancion(id_cancion)

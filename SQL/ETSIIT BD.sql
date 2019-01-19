@@ -25,7 +25,7 @@ create table cancion(
     fecha_c date constraint fecha_cancion_no_nula not null,
     ruta_audio varchar2(100),
     num_repro number(10),
-    valoracion number(1,2));
+    valoracion number(3,1));
     
 create table lista(
     id_lista char(8) constraint id_lista_no_nulo not null
@@ -132,7 +132,7 @@ create table recomienda(
 create table valora(
   id_usuario,
   id_cancion,
-  puntuacion number(1,1),
+  puntuacion number(3,1),
   primary key (id_usuario,id_cancion),
   foreign key (id_usuario) references usuario(id_usuario),
   foreign key (id_cancion) references cancion(id_cancion)
@@ -146,5 +146,47 @@ create table escucha(
   foreign key (id_usuario) references usuario(id_usuario),
   foreign key (id_cancion) references cancion(id_cancion)
 );
-                                                                        
+                               
+
+create table album(
+    id_album char(8) constraint id_album_no_nulo not null
+    constraint id_album_primaria primary key,
+    nombre_album varchar2(50) 
+    	constraint nombre_album_no_nulo not null,
+    fecha_a date constraint fecha_album_no_nula not null,
+    num_canciones number(5),
+    duracion number(6)); 
+
+create table formado(
+  id_album,
+  id_cancion,
+  primary key (id_album,id_cancion),
+  foreign key (id_album) references album(id_album),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+
+create table desarrolla(
+  id_usuario,
+  id_cancion,
+  primary key (id_usuario,id_cancion),
+  foreign key (id_usuario) references usuario(id_usuario),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+
+create table produce(
+  id_usuario,
+  id_album,
+  primary key (id_usuario,id_cancion),
+  foreign key (id_usuario) references usuario(id_usuario),
+  foreign key (id_album)   references album(id_album)
+);
+
+create table destacadas(
+  id_usuario,
+  id_cancion,
+  primary key (id_usuario,id_cancion),
+  foreign key (id_usuario) references usuario(id_usuario),
+  foreign key (id_cancion) references cancion(id_cancion)
+);
+                                         
                                                                         
