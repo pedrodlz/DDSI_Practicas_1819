@@ -1064,6 +1064,14 @@ BEGIN
 	END IF;    
 END;
 \end{lstlisting}
+\newpage
+\subsubsection{Implementación de añadir cancion a una lista.}
+	La implementacion ha sido implementada en Java y la interfaz es mediante lineas de comandos. Se muestra un menu y el usuario tiene que elegir una opcion. 
+	
+	El acceso a la base de datos se realiza JDBC, por eso la implementación está escrita en Java. Para el desarrollo he usado JDeveloper.
+
+
+\lstinputlisting[language=Java,frame=single,tabsize=2,showstringspaces=false,basicstyle=\small]{implementaciones/pedro_aniadir_canciones_a_lista.java}
 
 \subsection{Implementación modulo social.}
 \subsubsection{Implementación del disparador.}
@@ -1093,7 +1101,7 @@ END;
 \subsubsection{Implementación de un proceso.}
 	El proceso acordado para la implementación consiste mostrar que están escuchando mis amigos. Debido a la dificultad de mostrar lo que se está reproduciendo en un instante, se decidió mostrar las reproducciones realizadas ``hoy'', es decir, en un día completo.
 	
-	El proceso ha sido implementado en Python y la interfaz es línea de comandos (CLI), debido a la falta de tiempo y el poco conocimiento a cerca de interfaces gráficas. 
+	El proceso ha sido implementado en Python y la interfaz es línea de comandos (CLI), debido a la falta de tiempo y el poco conocimiento acerca de interfaces gráficas. 
 	
 	La conexión a la base de datos se realiza mediante el paquete ``cx\_Oracle'', que nos permite realizar las consultas y manejar los datos consultados.
 
