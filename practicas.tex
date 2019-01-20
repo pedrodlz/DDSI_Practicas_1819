@@ -58,6 +58,21 @@
   backgroundcolor=\color{grisclarito}
 }
 
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+
 \hypersetup{
   colorlinks=true,
   linkcolor=black,
@@ -718,9 +733,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
   \begin{center}
   \shadowbox{\includegraphics[width=0.6\textwidth]{imagenes/EE0_social.png}\par\vspace{1cm}}
   \end{center}
-\subsection{Esquema armazón D (ER0).}
-	Unión de los esquemas externos.
-	%No se que esquema es este	
+	
 \subsection{Refinamientos.}
 
 
@@ -834,7 +847,7 @@ Un usuario podrá ver las recomendaciones que le llegan de sus amigos. Además, 
 \hline
 \multicolumn{2}{|c|}{\textbf{Tabla Usuarios}} \\ \hline
 Clave primaria & ID usuario \\ \hline
-Resto de atributos & \begin{tabular}[c]{@{}c@{}}nombre usuario, nombre artistico,\\ email, contraseña, nombre, apellidos, tipo, pais.\end{tabular} \\ \hline
+Resto de atributos & \begin{tabular}[c]{@{}c@{}}nombre usuario, nombre artístico,\\ email, contraseña, nombre, apellidos, tipo, pais.\end{tabular} \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1043,9 +1056,9 @@ Clave primaria & ID usuario, ID canción \\ \hline
 \newpage
 \subsection{Implementación modulo escuchar música.}
 \subsubsection{Implementación del disparador.}
-	El disparador se encarga de controlar la inserción de una tupla en la tabla pertenece. Esta tabla es la encargada de guardar las canciones que pertenecen a una lista determinada. El trabajo del disparador es que cuando una cancion pertenezca a mas de dos lista diferentes muestra un mensaje 
+	El disparador se encarga de controlar la inserción de una tupla en la tabla pertenece. Esta tabla es la encargada de guardar las canciones que pertenecen a una lista determinada. El trabajo del disparador es que cuando una canción pertenezca a mas de dos lista diferentes muestra un mensaje 
 	
-	El funcionamiento consiste en contar cuantas veces aparece la misma cancion en la tabla pertenece (cada vez que aparezca quiere decir que esta en otra lista) antes de la insercion de esta a una nueva lista. Si es mayor que uno muestra el mensaje. Muestra el mensaje cuando es mayor que uno y no dos por que el disperador es un BEFORE INSERT y a ese uno hay que sumarle la insercion proxima.
+	El funcionamiento consiste en contar cuantas veces aparece la misma canción en la tabla pertenece (cada vez que aparezca quiere decir que esta en otra lista) antes de la inserción de esta a una nueva lista. Si es mayor que uno muestra el mensaje. Muestra el mensaje cuando es mayor que uno y no dos por que el disparador es un BEFORE INSERT y a ese uno hay que sumarle la inserción próxima.
 
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE TRIGGER pedro_trigg
@@ -1064,15 +1077,16 @@ BEGIN
 	END IF;    
 END;
 \end{lstlisting}
-\newpage
-\subsubsection{Implementación de añadir cancion a una lista.}
-	La implementacion ha sido implementada en Java y la interfaz es mediante lineas de comandos. Se muestra un menu y el usuario tiene que elegir una opcion. 
+
+\subsubsection{Implementación de añadir canción a una lista.}
+	La implementación ha sido implementada en Java y la interfaz es mediante lineas de comandos. Se muestra un menú y el usuario tiene que elegir una opción. 
 	
 	El acceso a la base de datos se realiza JDBC, por eso la implementación está escrita en Java. Para el desarrollo he usado JDeveloper.
 
 
 \lstinputlisting[language=Java,frame=single,tabsize=2,showstringspaces=false,basicstyle=\small]{implementaciones/pedro_aniadir_canciones_a_lista.java}
 
+\newpage
 \subsection{Implementación modulo social.}
 \subsubsection{Implementación del disparador.}
 	Este disparador controla la inserción de una tupla en la tabla recomendación. Es decir comprueba una condición cuando un usuario recomienda una canción a otro usuario. Dicha condición consiste en que un usuario no puede recomendar una canción si no la ha escuchado previamente.
@@ -1097,7 +1111,6 @@ WHERE id_cancion = :new.id_cancion and id_usuario = :new.id_usuario1;
     RAISE_APPLICATION_ERROR(-20000,'No has escuchado la cancion');
 END;
 \end{lstlisting}
-\newpage
 \subsubsection{Implementación de un proceso.}
 	El proceso acordado para la implementación consiste mostrar que están escuchando mis amigos. Debido a la dificultad de mostrar lo que se está reproduciendo en un instante, se decidió mostrar las reproducciones realizadas ``hoy'', es decir, en un día completo.
 	
@@ -1108,7 +1121,7 @@ END;
 
 \lstinputlisting[language=Python,frame=single,tabsize=2,showstringspaces=false]{implementaciones/dario_ver_canciones_amigos.py}
 
-
+\newpage
 \subsection{Valoración de canciones.}
 \subsubsection{Implementación del disparador.}
 El disparador que tenemos que hacer tiene que comprobar que cuando vamos a valorar una canción, ésta ha sido escuchada al menos una vez por el usuario que valora. Para hacer esto implementamos un disparador que se ejecuta antes de cada operación \texttt{INSERT} en la tabla \texttt{valora}.
@@ -1153,5 +1166,50 @@ DELETE FROM escucha where id_usuario = 'UN000003' and ID_CANCION = 'C0000001';
 DELETE FROM valora where id_usuario = 'UN000003' and ID_CANCION = 'C0000001';
 commit;
 \end{verbatim}
+
+\subsubsection{Implementación de un proceso.}
+	
+	El proceso a implementar según lo acordado con el profesor es el de valorar canciones. Para ello vamos a desarrollar una aplicación que muestre las canciones del sistema y permita valorarlas. Si la canción no ha sido escuchada por el usuario da un error advirtiendo al usuario que no puede valorar una canción que no ha escuchado. Además muestra un error si la canción ya ha sido valorada por el usuario.
+	
+	El proceso ha sido implementado en Python y Javascript. Se ha diseñado una interfaz gráfica basada en tecnologías web que hace consultas a una API creada en Python con el microframework Flask. La conexión a la base de datos se realiza mediante el paquete ``cx\_Oracle'', que nos permite realizar las consultas y manejar los datos consultados.
+	
+	El código del servidor es el siguiente:
+	
+\lstinputlisting[language=Python,tabsize=1,showstringspaces=false]{implementaciones/implementacion_javier/servicio_api.py}
+
+	El código Javascript que consume la API es el siguiente:
+	
+\lstinputlisting[language=JavaScript,tabsize=1,showstringspaces=false]{implementaciones/implementacion_javier/main.js}
+
+Para actualizar las valoraciones de cada canción después de que se haya añadido una valoración nueva se ha implementado un nuevo disparador que actualiza la valoración en la tabla canción después de cada INSERT en la tabla valora.
+
+\lstinputlisting[language=SQL,tabsize=1,showstringspaces=false]{SQL/valora_trigger.sql}
+
+	La aplicación tiene la siguiente apariencia:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.40]{implementaciones/implementacion_javier/imagenes/intro.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.40]{implementaciones/implementacion_javier/imagenes/lista_canciones.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.40]{implementaciones/implementacion_javier/imagenes/valoracion.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.40]{implementaciones/implementacion_javier/imagenes/duplicada.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.40]{implementaciones/implementacion_javier/imagenes/no_escuchada.png}
+\end{figure}
+
 
 \end{document}
