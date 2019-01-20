@@ -1041,6 +1041,30 @@ Clave primaria & ID usuario, ID canción \\ \hline
 \lstinputlisting[language=SQL]{SQL/SQL_pdf.sql}
 
 \newpage
+\subsection{Implementación modulo escuchar música.}
+\subsubsection{Implementación del disparador.}
+	El disparador se encarga de controlar la inserción de una tupla en la tabla pertenece. Esta tabla es la encargada de guardar las canciones que pertenecen a una lista determinada. El trabajo del disparador es que cuando una cancion pertenezca a mas de dos lista diferentes muestra un mensaje 
+	
+	El funcionamiento consiste en contar cuantas veces aparece la misma cancion en la tabla pertenece (cada vez que aparezca quiere decir que esta en otra lista) antes de la insercion de esta a una nueva lista. Si es mayor que uno muestra el mensaje. Muestra el mensaje cuando es mayor que uno y no dos por que el disperador es un BEFORE INSERT y a ese uno hay que sumarle la insercion proxima.
+
+\begin{lstlisting}[language=SQL]
+CREATE OR REPLACE TRIGGER pedro_trigg
+BEFORE INSERT ON pertenece
+FOR EACH ROW
+DECLARE
+num_canciones number := 0;
+BEGIN
+    SELECT count(id_cancion) 
+    INTO num_canciones 
+    FROM pertenece  
+    where id_cancion = :new.id_cancion;
+    
+	if (num_canciones > 1) THEN
+		DBMS_OUTPUT.PUT_LINE('La cancion pertenece a mas de dos listas');
+	END IF;    
+END;
+\end{lstlisting}
+
 \subsection{Implementación modulo social.}
 \subsubsection{Implementación del disparador.}
 	Este disparador controla la inserción de una tupla en la tabla recomendación. Es decir comprueba una condición cuando un usuario recomienda una canción a otro usuario. Dicha condición consiste en que un usuario no puede recomendar una canción si no la ha escuchado previamente.
